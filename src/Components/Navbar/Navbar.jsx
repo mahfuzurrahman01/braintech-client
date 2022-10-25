@@ -72,10 +72,10 @@ const Navbar = () => {
                         <button
                             aria-label='Open Menu'
                             title='Open Menu'
-                            className='p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50'
+                            className='p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 '
                             onClick={() => setIsMenuOpen(true)}
                         >
-                            <svg className='w-5 text-gray-100' viewBox='0 0 24 24'>
+                            <svg className='w-5 text-gray-500' viewBox='0 0 24 24'>
                                 <path
                                     fill='currentColor'
                                     d='M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z'
@@ -112,7 +112,9 @@ const Navbar = () => {
                   <span className='ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase'>
                     Smart Home
                   </span> */}
-                                                <img src={logo} className='h-18 w-32' alt="" />
+                                                <img src={logo} className='h-12 w-16' alt="" />
+                                                <p className='text-3xl font-semibold text-gray-400'>BrainTech</p>
+                                                
                                             </Link>
                                         </div>
                                         <div>
