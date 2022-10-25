@@ -14,7 +14,6 @@ const Navbar = () => {
 
                         className='inline-flex items-center'
                     >
-
                         <img src={logo} className='h-16 w-20' alt="" />
                         <p className='text-3xl font-semibold text-gray-400'>BrainTech</p>
 
@@ -161,7 +160,7 @@ const Navbar = () => {
                                                     to='/login'
                                                     className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
                                                 >
-                                                    <button className='bg-orange-400 py-1 px-5 rounded hover:bg-orange-500'>Log in</button>
+                                                    <button className='bg-blue-400 py-1 text-white px-5 rounded hover:bg-blue-500'>Log in</button>
                                                 </Link>
                                             </li>
                                             <li onClick={() => setMode(!mode)} >
