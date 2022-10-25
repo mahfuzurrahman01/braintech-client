@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo/Lars_Peeters-removebg-preview.png'
-
+import { MdDarkMode, MdLightMode } from 'react-icons/md'
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [mode, setMode] = useState(false)
     return (
         <div>
             <div className='px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 bg-gray-100'>
@@ -19,21 +20,12 @@ const Navbar = () => {
 
                     </Link>
                     <ul className='flex hidden items-center space-x-8 lg:flex'>
-                        <li>
-                            <Link
-                                to='/home'
-
-                                title='news section'
-                                className='font-medium tracking-wide text-gray-400 hover:text-gray-500 transition-colors duration-200 hover:text-deep-purple-accent-400'
-                            >
-                                Home
-                            </Link>
-                        </li>
+                      
                         <li>
                             <Link
                                 to='/Courses'
 
-                                title='destination'
+
                                 className='font-medium tracking-wide text-gray-400 hover:text-gray-500  transition-colors duration-200 hover:text-deep-purple-accent-400'
                             >
                                 Courses
@@ -43,7 +35,7 @@ const Navbar = () => {
                             <Link
                                 to='/faq'
 
-                                title='blog section'
+
                                 className='font-medium tracking-wide text-gray-400 hover:text-gray-500 transition-colors duration-200 hover:text-deep-purple-accent-400'
                             >
                                 FAQ
@@ -53,7 +45,6 @@ const Navbar = () => {
                             <Link
                                 to='/blog'
 
-                                title='Contact'
                                 className='font-medium tracking-wide text-gray-400 hover:text-gray-500 transition-colors duration-200 hover:text-deep-purple-accent-400'
                             >
                                 Blog
@@ -67,11 +58,15 @@ const Navbar = () => {
                                 <button className='bg-blue-400 py-1 px-5 rounded hover:bg-blue-500 text-white'>Log in</button>
                             </Link>
                         </li>
+                        <li onClick={() => setMode(!mode)} >
+                            {
+                                mode ? <MdDarkMode className='w-6 h-6 text-blue-400'></MdDarkMode> : <MdLightMode className='w-6 h-6 text-blue-400'></MdLightMode>
+                            }
+                        </li>
                     </ul>
                     <div className='lg:hidden'>
                         <button
                             aria-label='Open Menu'
-                            title='Open Menu'
                             className='p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 '
                             onClick={() => setIsMenuOpen(true)}
                         >
@@ -98,7 +93,6 @@ const Navbar = () => {
                                             <Link
                                                 to='/'
                                                 aria-label='Company'
-                                                title='Company'
                                                 className='inline-flex items-center'
                                             >
                                                 {/* <svg
@@ -114,13 +108,12 @@ const Navbar = () => {
                   </span> */}
                                                 <img src={logo} className='h-12 w-16' alt="" />
                                                 <p className='text-3xl font-semibold text-gray-400'>BrainTech</p>
-                                                
+
                                             </Link>
                                         </div>
                                         <div>
                                             <button
                                                 aria-label='Close Menu'
-                                                title='Close Menu'
                                                 className='p-2 -mt-2 -mr-2 transition duration-200 rounded hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline'
                                                 onClick={() => setIsMenuOpen(false)}
                                             >
@@ -135,21 +128,11 @@ const Navbar = () => {
                                     </div>
                                     <nav>
                                         <ul className='space-y-4'>
-                                            <li>
-                                                <Link
-                                                    to='/home'
-
-                                                    title='news section'
-                                                    className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
-                                                >
-                                                    Home
-                                                </Link>
-                                            </li>
+                                            
                                             <li>
                                                 <Link
                                                     to='/courses'
 
-                                                    title='destination'
                                                     className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
                                                 >
                                                     Courses
@@ -159,7 +142,6 @@ const Navbar = () => {
                                                 <Link
                                                     to='/faq'
 
-                                                    title='blog section'
                                                     className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
                                                 >
                                                     FAQ
@@ -169,7 +151,6 @@ const Navbar = () => {
                                                 <Link
                                                     to='/blog'
 
-                                                    title='Contact'
                                                     className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
                                                 >
                                                     Blog
@@ -182,6 +163,11 @@ const Navbar = () => {
                                                 >
                                                     <button className='bg-orange-400 py-1 px-5 rounded hover:bg-orange-500'>Log in</button>
                                                 </Link>
+                                            </li>
+                                            <li onClick={() => setMode(!mode)} >
+                                                {
+                                                    mode ? <MdDarkMode className='w-6 h-6 text-blue-400'></MdDarkMode> : <MdLightMode className='w-6 h-6 text-blue-400'></MdLightMode>
+                                                }
                                             </li>
                                         </ul>
                                     </nav>
