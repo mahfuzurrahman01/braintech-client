@@ -2,7 +2,9 @@ import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 
 const Details = () => {
+    //use loader data from fetch 
     const data = useLoaderData()
+    //object destructured
     const { id, name, picture, classes, intro, roadmap } = data
     return (
         <div>

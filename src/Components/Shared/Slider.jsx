@@ -2,6 +2,7 @@ import React from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 const Slider = () => {
+    //this slider will be shown in the left nav 
     return (
         <div className='md:block hidden'>
             <Carousel autoPlay showThumbs={false} infiniteLoop={true} showStatus={false} swipeable>

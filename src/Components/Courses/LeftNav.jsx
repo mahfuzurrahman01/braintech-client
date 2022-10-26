@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Slider from '../Shared/Slider';
 
 const LeftNav = () => {
+    //state is use for stored the data came from fetch
     const [courses,setCourses] = useState([]);
     useEffect(()=>{
         fetch('http://localhost:5000/courses')

@@ -4,6 +4,7 @@ import Card from '../Shared/Card';
 import LeftNav from './LeftNav';
 
 const Courses = () => {
+    //useloaderdata use for fetching the data from routes loader
     const courses = useLoaderData()
     return (
         <div>

@@ -16,8 +16,12 @@ const Register = () => {
                 <h1 className="lg:text-3xl text-2xl font-semibold text-center text-blue-400">Register</h1>
                 <form noValidate="" action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
                     <div className="space-y-1 text-sm">
-                        <label htmlFor="username" className="block text-gray-600">Username</label>
-                        <input type="text" name="username" id="username" placeholder="Username" className="w-full px-4 py-3 rounded-md bg-gray-100 text-gray-900 border-violet-400" />
+                        <label htmlFor="username" className="block text-gray-600">Name</label>
+                        <input type="text" name="username" id="username" placeholder="full name" className="w-full px-4 py-3 rounded-md bg-gray-100 text-gray-900 border-violet-400" />
+                    </div>
+                    <div className="space-y-1 text-sm">
+                        <label htmlFor="photourl" className="block text-gray-600">Photo url</label>
+                        <input type="text" name="photourl" id="photourl" placeholder="Photo url" className="w-full px-4 py-3 rounded-md bg-gray-100 text-gray-900 border-violet-400" />
                     </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="email" className="block text-gray-600">Email</label>

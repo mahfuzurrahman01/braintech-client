@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Card = ({ course }) => {
+    //destructure the course object came as props which is an object
     const { picture, name, id } = course;
     return (
         <Link to={`/courses/${id}`}>

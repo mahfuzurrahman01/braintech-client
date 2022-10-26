@@ -2,7 +2,9 @@ import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 const CheckOut = () => {
+    //use loader data for load the fetch data
     const data = useLoaderData()
+    //destructure
     const { name, pricing, beginnerPricing, proPricing } = data;
     return (
         <div>
