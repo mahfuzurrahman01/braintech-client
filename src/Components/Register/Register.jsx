@@ -2,6 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Register = () => {
+    const registerHandler = event => {
+        event.preventDefault()
+        const form = event.target;
+        const name = form.username.value;
+        const photourl = form.photourl.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(email, password, name, photourl)
+    }
     return (
 
         <div className='md:w-1/4 w-11/12 mx-auto my-10'>
@@ -14,7 +23,7 @@ const Register = () => {
             </label>
             <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-gray-200 text-gray-100">
                 <h1 className="lg:text-3xl text-2xl font-semibold text-center text-blue-400">Register</h1>
-                <form noValidate="" action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
+                <form onSubmit={registerHandler} noValidate="" action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
                     <div className="space-y-1 text-sm">
                         <label htmlFor="username" className="block text-gray-600">Name</label>
                         <input type="text" name="username" id="username" placeholder="full name" className="w-full px-4 py-3 rounded-md bg-gray-100 text-gray-900 border-violet-400" />
