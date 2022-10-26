@@ -6,8 +6,8 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [mode, setMode] = useState(false)
     return (
-        <div>
-            <div className='px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 bg-gray-100'>
+        <div className='sticky top-0 z-10'>
+            <div className='px-4 mx-auto sm:max-w-xl md:max-w-full lg:w-11/12 lg:py-4 py-2 md:px-24 lg:px-8 bg-gray-100'>
                 <div className='relative flex items-center justify-between'>
                     <Link
                         to='/'
