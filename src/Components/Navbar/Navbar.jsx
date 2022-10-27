@@ -13,7 +13,6 @@ const Navbar = () => {
     const [mode, setMode] = useState(false)
     //calling the usecontext function and destructuring the data
     const { user, logOut, name, photo } = useContext(AuthContext)
-    console.log(name, photo)
     //sign out handler use
     const signOutHandler = () => {
         logOut()

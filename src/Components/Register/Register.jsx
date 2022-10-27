@@ -53,19 +53,19 @@ const Register = () => {
                 <form onSubmit={registerHandler} noValidate="" action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
                     <div className="space-y-1 text-sm">
                         <label htmlFor="username" className="block text-gray-600">Name</label>
-                        <input type="text" name="username" id="username" placeholder="full name" className="w-full px-4 py-3 rounded-md bg-gray-100 text-gray-900 border-violet-400" />
+                        <input type="text" name="username" id="username" placeholder="full name" className="w-full px-4 py-3 rounded-md bg-gray-100 text-gray-900 border-violet-400" required/>
                     </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="photourl" className="block text-gray-600">Photo url</label>
-                        <input type="text" name="photourl" id="photourl" placeholder="Photo url" className="w-full px-4 py-3 rounded-md bg-gray-100 text-gray-900 border-violet-400" />
+                        <input type="text" name="photourl" id="photourl" placeholder="Photo url" className="w-full px-4 py-3 rounded-md bg-gray-100 text-gray-900 border-violet-400" required/>
                     </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="email" className="block text-gray-600">Email</label>
-                        <input type="email" name="email" id="email" placeholder="Email" className="w-full px-4 py-3 rounded-md bg-gray-100 text-gray-900 border-violet-400" />
+                        <input type="email" name="email" id="email" placeholder="Email" className="w-full px-4 py-3 rounded-md bg-gray-100 text-gray-900 border-violet-400" required />
                     </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="password" className="block text-gray-600">Password</label>
-                        <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md border-gray-700 bg-gray-100 text-gray-900 focus:border-violet-400" />
+                        <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md border-gray-700 bg-gray-100 text-gray-900 focus:border-violet-400" required/>
 
                     </div>
                     <button type='submit' className="block w-full p-3 text-center rounded-sm text-gray-200 bg-blue-400 hover:bg-blue-500 duration-300">Sign up</button>
