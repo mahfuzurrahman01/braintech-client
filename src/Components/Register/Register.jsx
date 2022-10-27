@@ -1,14 +1,13 @@
 import React from 'react';
 import { useContext } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext/UserContext';
 import { errorToast, successToast } from '../Shared/Toast';
 
 const Register = () => {
     //getting the create user function with context
-    const { createUserWithEmail, profileUpdate,setUser } = useContext(AuthContext)
-    const navigate = useNavigate();
-    const location = useLocation()
+    const { createUserWithEmail, profileUpdate } = useContext(AuthContext)
+    const navigate = useNavigate()
     const registerHandler = event => {
         event.preventDefault()
         const form = event.target;
@@ -19,7 +18,6 @@ const Register = () => {
         createUserWithEmail(email, password)
             .then(result => {
                 const user = result.user;
-                setUser(user)
                 console.log(user)
                 //update user 
                 updateUserProfile(name,photourl)
@@ -28,7 +26,7 @@ const Register = () => {
                 //set success toast
                 successToast()
                 form.reset()
-                // navigate('/')
+                navigate('/')
             })
             .catch(error => {
                 const errorMessage = error.message

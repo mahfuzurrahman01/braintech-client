@@ -12,8 +12,8 @@ const Navbar = () => {
     //This state is for set the toggle mode 
     const [mode, setMode] = useState(false)
     //calling the usecontext function and destructuring the data
-    const { user, logOut, loading } = useContext(AuthContext)
-    console.log(user)
+    const { user, logOut} = useContext(AuthContext)
+
     //sign out handler use
     const signOutHandler = () => {
         logOut()
