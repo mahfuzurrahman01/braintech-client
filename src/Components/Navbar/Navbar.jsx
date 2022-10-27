@@ -13,6 +13,7 @@ const Navbar = () => {
     const [mode, setMode] = useState(false)
     //calling the usecontext function and destructuring the data
     const { user, logOut } = useContext(AuthContext)
+   
     //sign out handler use
     const signOutHandler = () => {
         logOut()
@@ -80,7 +81,7 @@ const Navbar = () => {
                         </li>
                         <li>
                             {
-                                user?.uid ? <div className='flex gap-1'><div title={user.displayName}>{user.photoURL === null ? <FaUser className='w-8 h-8 text-gray-400'></FaUser> : <img src={user.photoURL} alt='' className='w-8 h-8 rounded-full'></img>}</div><button className='text-gray-100 bg-blue-400 rounded py-1 px-2' onClick={signOutHandler}>Sign out</button></div> : <Link
+                                user?.uid ? <div className='flex gap-1'><div title={user.displayName}>{user?.photoURL === null ? <FaUser className='w-8 h-8 text-gray-400'></FaUser> : <img src={user.photoURL} alt='' className='w-8 h-8 rounded-full'></img>}</div><button className='text-gray-100 bg-blue-400 rounded py-1 px-2' onClick={signOutHandler}>Sign out</button></div> : <Link
                                     to='/login'
                                     className='font-medium tracking-wide text-gray-400 hover:text-gray-500 transition-colors duration-200 hover:text-deep-purple-accent-400'
                                 >

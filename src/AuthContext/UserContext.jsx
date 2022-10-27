@@ -16,6 +16,7 @@ const UserContext = ({children}) => {
     const githubProvider = new GithubAuthProvider()
     //create user with email password function
     const createUserWithEmail = (email,password) =>{
+        setLoading(true)
         return createUserWithEmailAndPassword(auth,email,password);
     }
     //on auth state change
@@ -28,18 +29,22 @@ const UserContext = ({children}) => {
     },[])
     //sign out
     const logOut = () =>{
+        setLoading(true)
         return signOut(auth)
     }
     //sign in with email and password
     const loginwithEmailPass = (email,password) =>{
+        setLoading(true)
         return signInWithEmailAndPassword(auth,email,password);
     }
     //sign in with google 
     const signInWithGoogle = () =>{
+        setLoading(true)
         return signInWithPopup(auth,googleProvider);
     }
     //sign in with github 
     const signInWithGithub = () =>{
+        setLoading(true)
         return signInWithPopup(auth,githubProvider);
     }
     //value for context
