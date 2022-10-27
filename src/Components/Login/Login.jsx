@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { useContext } from 'react';
 
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -7,6 +8,7 @@ import { errorToast, successToast } from '../Shared/Toast';
 
 const Login = () => {
     const { loginwithEmailPass,signInWithGoogle,signInWithGithub } = useContext(AuthContext)
+    const [error,setError] = useState('')
     //navigate declare
     const navigate = useNavigate()
     const location = useLocation()
@@ -23,12 +25,14 @@ const Login = () => {
                 //set success toast
                 successToast()
                 form.reset()
+                setError('')
                 navigate(from,{ replace:true })
             })
             .catch(error => {
                 const errorMessage = error.message;
                 //toast
                 errorToast(errorMessage)
+                setError(errorMessage)
             })
     }
     //log in with google 
@@ -83,8 +87,9 @@ const Login = () => {
                     <div className="space-y-1 text-sm">
                         <label htmlFor="password" className="block text-gray-600">Password</label>
                         <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md border-gray-700 bg-gray-100 text-gray-900 focus:border-violet-400" />
-                        <div className="flex justify-end text-xs text-gray-700 underline">
-                            <a rel="noopener noreferrer" href="# ">Forgot Password?</a>
+                        <div className="flex justify-between text-xs text-gray-700 ">
+                            <p className='text-red-700'>{error}</p>
+                            <a className='underline' rel="noopener noreferrer" href="# ">Forgot Password?</a>
                         </div>
                     </div>
                     <button className="block w-full p-3 text-center rounded-sm text-gray-200 bg-blue-400 hover:bg-blue-500 duration-300">Sign in</button>

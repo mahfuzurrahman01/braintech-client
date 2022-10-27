@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import image from '../../assets/imges/12079894_4905784.jpg'
 import Courses from '../Courses/Courses';
+import Faq from '../Faq/Faq';
 const Home = () => {
     return (
         <div className='md:w-11/12 w-full mx-auto'>
@@ -19,6 +20,9 @@ const Home = () => {
             </div>
             <div>
                 <Courses></Courses>
+            </div>
+            <div>
+                <Faq></Faq>
             </div>
         </div>
     );

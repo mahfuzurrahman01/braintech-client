@@ -22,7 +22,9 @@ const auth = getAuth(app)
 export const AuthContext = createContext();
 const UserContext = ({ children }) => {
     const [user, setUser] = useState();
-    const [loading, setLoading] = useState(true);
+    const [name,setName ] = useState()
+    const [photo,setPhoto] = useState()
+     const [loading, setLoading] = useState(true);
     //google auth provider
     const googleProvider = new GoogleAuthProvider()
     const githubProvider = new GithubAuthProvider()
@@ -35,7 +37,10 @@ const UserContext = ({ children }) => {
     useEffect(() => {
         const subscription = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser)
-            console.log(currentUser)
+            //set name and photo to state for using in navbar
+            setName(currentUser?.displayName)
+            setPhoto(currentUser?.photoURL)
+
             setLoading(false);
         })
         return () => subscription()
@@ -74,7 +79,11 @@ const UserContext = ({ children }) => {
         signInWithGoogle,
         signInWithGithub,
         profileUpdate,
-        setUser
+        setUser,
+        name,
+        photo,
+        setName,
+        setPhoto
     }
     return (
         <AuthContext.Provider value={authInfo}>

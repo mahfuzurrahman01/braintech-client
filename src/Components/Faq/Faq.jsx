@@ -2,8 +2,8 @@ import React from 'react';
 
 const Faq = () => {
     return (
-        <div className='md:w-3/4 w-11/12 mx-auto'>
-            <section className=" bg-gray-200 rounded md:my-10 my-4  text-gray-700">
+        <div className=' w-11/12 mx-auto'>
+            <section className=" bg-gray-100 rounded md:my-10 my-4  text-gray-700">
                 <div className="container flex flex-col justify-center px-4 py-8 mx-auto md:p-8">
                     <h2 className="text-3xl font-semibold sm:text-4xl text-gray-500">Frequently Asked Questions</h2>
                     <p className="mt-4 mb-8  text-gray-600">Many students are more comfortable engaging in meaningful discussions online than in a classroom. These students might have hearing or speech impairments; speak different languages; have severe social anxiety; or simply need more time to organize their thoughts.</p>

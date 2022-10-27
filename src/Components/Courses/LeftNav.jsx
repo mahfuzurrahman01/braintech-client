@@ -13,7 +13,7 @@ const LeftNav = () => {
         .then(data => setCourses(data))
     },[])
     return (
-        <div className='sticky top-20'>
+        <div className='sticky top-24'>
             {
                 courses.map(course => <Link to={`/courses/${course.id}`} key={course.id}><p className='text-gray-100 bg-blue-400 hover:bg-blue-500 py-1 px-3 rounded shadow-md shadow-gray-500 mb-2'>{course.name}</p></Link>)
             }

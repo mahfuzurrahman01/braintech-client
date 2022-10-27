@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import logo from '../../assets/logo/Lars_Peeters-removebg-preview.png'
 import { MdDarkMode, MdLightMode } from 'react-icons/md'
@@ -12,8 +12,8 @@ const Navbar = () => {
     //This state is for set the toggle mode 
     const [mode, setMode] = useState(false)
     //calling the usecontext function and destructuring the data
-    const { user, logOut} = useContext(AuthContext)
-
+    const { user, logOut, name, photo } = useContext(AuthContext)
+    console.log(name, photo)
     //sign out handler use
     const signOutHandler = () => {
         logOut()
@@ -51,37 +51,37 @@ const Navbar = () => {
                     <ul className='flex hidden items-center space-x-8 lg:flex'>
 
                         <li>
-                            <Link
+                            <NavLink
                                 to='/Courses'
 
 
-                                className='font-medium tracking-wide text-gray-400 hover:text-gray-500  transition-colors duration-200 hover:text-deep-purple-accent-400'
+                                className={({ isActive }) => isActive ? 'font-semibold tracking-wide text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-400 text-lg' : 'font-medium tracking-wide text-gray-600 transition-colors duration-200 hover:text-deep-purple-accent-400'}
                             >
                                 Courses
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link
+                            <NavLink
                                 to='/faq'
 
 
-                                className='font-medium tracking-wide text-gray-400 hover:text-gray-500 transition-colors duration-200 hover:text-deep-purple-accent-400'
+                                className={({ isActive }) => isActive ? ' text-lg font-semibold tracking-wide text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-400' : 'font-medium tracking-wide text-gray-600 transition-colors duration-200 hover:text-deep-purple-accent-400'}
                             >
                                 FAQ
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link
+                            <NavLink
                                 to='/blog'
 
-                                className='font-medium tracking-wide text-gray-400 hover:text-gray-500 transition-colors duration-200 hover:text-deep-purple-accent-400'
+                                className={({ isActive }) => isActive ? ' text-lg font-semibold tracking-wide text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-400' : 'font-medium tracking-wide text-gray-600 transition-colors duration-200 hover:text-deep-purple-accent-400'}
                             >
                                 Blog
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
                             {
-                                user?.uid ? <div className='flex gap-1'><div className="tooltip  tooltip-bottom" data-tip={user.displayName}>{user?.photoURL === null ? <FaUser className='w-8 h-8 text-gray-400'></FaUser> : <img src={user?.photoURL} alt='' className='w-8 h-8 rounded-full'></img>}</div><button className='text-gray-100 bg-blue-400 rounded py-1 px-2' onClick={signOutHandler}>Sign out</button></div> : <Link
+                                user?.uid ? <div className='flex gap-1'><div className="tooltip  tooltip-bottom" data-tip={name}>{photo === null ? <FaUser className='w-8 h-8 text-gray-400'></FaUser> : <img src={photo} alt='' className='w-8 h-8 rounded-full'></img>}</div><button className='text-gray-100 bg-blue-400 rounded py-1 px-2' onClick={signOutHandler}>Sign out</button></div> : <Link
                                     to='/login'
                                     className='font-medium tracking-wide text-gray-400 hover:text-gray-500 transition-colors duration-200 hover:text-deep-purple-accent-400'
                                 >
@@ -162,35 +162,35 @@ const Navbar = () => {
                                         <ul className='space-y-4'>
 
                                             <li>
-                                                <Link
+                                                <NavLink
                                                     to='/courses'
 
-                                                    className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
+                                                    className={({ isActive }) => isActive ? ' text-lg font-semibold tracking-wide text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-400' : 'font-medium tracking-wide text-gray-600 transition-colors duration-200 hover:text-deep-purple-accent-400'}
                                                 >
                                                     Courses
-                                                </Link>
+                                                </NavLink>
                                             </li>
                                             <li>
-                                                <Link
+                                                <NavLink
                                                     to='/faq'
 
-                                                    className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
+                                                    className={({ isActive }) => isActive ? ' text-lg font-semibold tracking-wide text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-400' : 'font-medium tracking-wide text-gray-600 transition-colors duration-200 hover:text-deep-purple-accent-400'}
                                                 >
                                                     FAQ
-                                                </Link>
+                                                </NavLink>
                                             </li>
                                             <li>
-                                                <Link
+                                                <NavLink
                                                     to='/blog'
 
-                                                    className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
+                                                    className={({ isActive }) => isActive ? ' text-lg font-semibold tracking-wide text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-400' : 'font-medium tracking-wide text-gray-600 transition-colors duration-200 hover:text-deep-purple-accent-400'}
                                                 >
                                                     Blog
-                                                </Link>
+                                                </NavLink>
                                             </li>
                                             <li>
                                                 {
-                                                    user?.uid ? <div className='flex flex-col gap-y-3'><div title={user.displayName}>{user.photoURL === null ? <FaUser className='w-8 h-8 text-gray-400'></FaUser> : <img src={user.photoURL} alt='' className='w-8 h-8 rounded-full'></img>}</div><button className='text-gray-100 bg-blue-400 rounded py-1 px-2 w-1/4' onClick={signOutHandler}>Sign out</button></div> : <Link
+                                                    user?.uid ? <div className="tooltip  tooltip-top flex flex-col gap-y-3" data-tip={name}><div title={user.displayName}>{user.photoURL === null ? <FaUser className='w-8 h-8 text-gray-400'></FaUser> : <img src={user.photoURL} alt='' className='w-8 h-8 rounded-full'></img>}</div><button className='text-gray-100 bg-blue-400 rounded py-1 px-2 w-1/4' onClick={signOutHandler}>Sign out</button></div> : <Link
                                                         to='/login'
                                                         className='font-medium tracking-wide text-gray-400 hover:text-gray-500 transition-colors duration-200 hover:text-deep-purple-accent-400'
                                                     >
