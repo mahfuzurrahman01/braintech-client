@@ -1,12 +1,14 @@
 import React from 'react';
 import { useContext } from 'react';
-import Swal from 'sweetalert2';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext/UserContext';
+import { errorToast, successToast } from '../Shared/Toast';
 
 const Register = () => {
-      //getting the create user function with context
-    const { createUserWithEmail } = useContext(AuthContext)
+    //getting the create user function with context
+    const { createUserWithEmail, profileUpdate,setUser } = useContext(AuthContext)
+    const navigate = useNavigate();
+    const location = useLocation()
     const registerHandler = event => {
         event.preventDefault()
         const form = event.target;
@@ -14,49 +16,30 @@ const Register = () => {
         const photourl = form.photourl.value;
         const email = form.email.value;
         const password = form.password.value;
-        createUserWithEmail(email,password)
-        .then(result => {
-            const user = result.user;
-            console.log(user)
-            //set success toast
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                  toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-              })
-            Toast.fire({
-                icon: 'success',
-                title: 'Signed in successfully'
-              })
-            form.reset()
-        })
-        .catch(error => {
-            const errorMessage = error.message;
-            //setError toast
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                  toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-              })
-            Toast.fire({
-                icon: 'error',
-                title: errorMessage
-              })
-        })
+        createUserWithEmail(email, password)
+            .then(result => {
+                const user = result.user;
+                setUser(user)
+                console.log(user)
+                //update user 
+                updateUserProfile(name,photourl)
+                 .then(()=>{})
+                 .catch(error => console.error(error))
+                //set success toast
+                successToast()
+                form.reset()
+                // navigate('/')
+            })
+            .catch(error => {
+                const errorMessage = error.message
+                //toast error
+                errorToast(errorMessage)
+            })
     }
-    
+    const updateUserProfile = (name, photoURL) => {
+        const profile = { displayName: name, photoURL: photoURL }
+        return profileUpdate(profile)
+    }
     return (
 
         <div className='md:w-1/4 w-11/12 mx-auto my-10'>

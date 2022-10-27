@@ -1,7 +1,7 @@
 import React from 'react';
 import { useContext } from 'react';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext/UserContext';
 import { errorToast, successToast } from '../Shared/Toast';
 
@@ -9,6 +9,8 @@ const Login = () => {
     const { loginwithEmailPass,signInWithGoogle,signInWithGithub } = useContext(AuthContext)
     //navigate declare
     const navigate = useNavigate()
+    const location = useLocation()
+    const from = (location.state?.from?.pathname || '/')
     const loginHandler = event => {
         event.preventDefault()
         const form = event.target;
@@ -21,6 +23,7 @@ const Login = () => {
                 //set success toast
                 successToast()
                 form.reset()
+                navigate(from,{ replace:true })
             })
             .catch(error => {
                 const errorMessage = error.message;
@@ -36,7 +39,7 @@ const Login = () => {
         console.log(user);
         //success toast 
         successToast()
-       navigate('/')
+        navigate(from,{ replace:true })
        })
        .catch(error =>{
         const errorMessage = error.message
@@ -53,7 +56,7 @@ const Login = () => {
             //success toast
             successToast()
             //navigate after log in
-            navigate('/')
+            navigate(from,{ replace:true })
         })
         .catch(error =>{
             const errorMessage = error.message
