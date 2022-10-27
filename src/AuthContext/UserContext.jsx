@@ -24,6 +24,7 @@ const UserContext = ({ children }) => {
     const [user, setUser] = useState();
     const [name,setName ] = useState()
     const [photo,setPhoto] = useState()
+    const [dark,setDark] = useState(false);
      const [loading, setLoading] = useState(true);
     //google auth provider
     const googleProvider = new GoogleAuthProvider()
@@ -83,7 +84,9 @@ const UserContext = ({ children }) => {
         name,
         photo,
         setName,
-        setPhoto
+        setPhoto,
+        setDark,
+        dark
     }
     return (
         <AuthContext.Provider value={authInfo}>

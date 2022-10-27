@@ -12,7 +12,7 @@ const Navbar = () => {
     //This state is for set the toggle mode 
     const [mode, setMode] = useState(false)
     //calling the usecontext function and destructuring the data
-    const { user, logOut, name, photo } = useContext(AuthContext)
+    const { user, logOut, setDark, dark } = useContext(AuthContext)
     //sign out handler use
     const signOutHandler = () => {
         logOut()
@@ -34,6 +34,7 @@ const Navbar = () => {
                 })
             })
     }
+
     return (
         <div className='sticky top-0 z-10'>
             <div className='px-4 mx-auto sm:max-w-xl md:max-w-full lg:w-11/12 lg:py-4 py-2 md:px-24 lg:px-8 bg-gray-100'>
@@ -80,7 +81,7 @@ const Navbar = () => {
                         </li>
                         <li>
                             {
-                                user?.uid ? <div className='flex gap-1'><div className="tooltip  tooltip-bottom" data-tip={name}>{photo === null ? <FaUser className='w-8 h-8 text-gray-400'></FaUser> : <img src={photo} alt='' className='w-8 h-8 rounded-full'></img>}</div><button className='text-gray-100 bg-blue-400 rounded py-1 px-2' onClick={signOutHandler}>Sign out</button></div> : <Link
+                                user?.uid ? <div className='flex gap-1'><Link to='/profile'><div className="tooltip  tooltip-bottom" data-tip={user.displayName ? user.displayName : 'user name'}>{user.photoURL === null ? <FaUser className='w-8 h-8 text-gray-400'></FaUser> : <img src={user.photoURL} alt='' className='w-8 h-8 rounded-full'></img>}</div></Link><button className='text-gray-100 bg-blue-400 rounded py-1 px-2' onClick={signOutHandler}>Sign out</button></div> : <Link
                                     to='/login'
                                     className='font-medium tracking-wide text-gray-400 hover:text-gray-500 transition-colors duration-200 hover:text-deep-purple-accent-400'
                                 >
@@ -91,7 +92,7 @@ const Navbar = () => {
 
                         <li onClick={() => setMode(!mode)} >
                             {
-                                mode ? <MdDarkMode className='w-6 h-6 text-blue-400'></MdDarkMode> : <MdLightMode className='w-6 h-6 text-blue-400'></MdLightMode>
+                                mode ? <MdDarkMode onClick={() => setDark(!dark)} className='w-6 h-6 text-blue-400'></MdDarkMode> : <MdLightMode onClick={() => setDark(!dark)} className='w-6 h-6 text-blue-400'></MdLightMode>
                             }
                         </li>
                     </ul>
@@ -189,7 +190,7 @@ const Navbar = () => {
                                             </li>
                                             <li>
                                                 {
-                                                    user?.uid ? <div className="tooltip  tooltip-top flex flex-col gap-y-3" data-tip={name}><div title={user.displayName}>{user.photoURL === null ? <FaUser className='w-8 h-8 text-gray-400'></FaUser> : <img src={user.photoURL} alt='' className='w-8 h-8 rounded-full'></img>}</div><button className='text-gray-100 bg-blue-400 rounded py-1 px-2 w-1/4' onClick={signOutHandler}>Sign out</button></div> : <Link
+                                                    user?.uid ? <div><div className="tooltip  tooltip-top flex flex-col gap-y-3" data-tip={user.displayName ? user.displayName : 'user name'}>{user.photoURL === null ? <FaUser className='w-8 h-8 text-gray-400'></FaUser> : <img src={user.photoURL} alt='' className='w-8 h-8 rounded-full'></img>}</div><button className='text-gray-100 bg-blue-400 rounded py-1 px-2 w-1/4' onClick={signOutHandler}>Sign out</button></div> : <Link
                                                         to='/login'
                                                         className='font-medium tracking-wide text-gray-400 hover:text-gray-500 transition-colors duration-200 hover:text-deep-purple-accent-400'
                                                     >
@@ -199,7 +200,7 @@ const Navbar = () => {
                                             </li>
                                             <li onClick={() => setMode(!mode)} >
                                                 {
-                                                    mode ? <MdDarkMode className='w-6 h-6 text-blue-400'></MdDarkMode> : <MdLightMode className='w-6 h-6 text-blue-400'></MdLightMode>
+                                                    mode ? <MdDarkMode onClick={() => setDark(!dark)} className='w-6 h-6 text-blue-400'></MdDarkMode> : <MdLightMode onClick={() => setDark(!dark)} className='w-6 h-6 text-blue-400'></MdLightMode>
                                                 }
                                             </li>
                                         </ul>

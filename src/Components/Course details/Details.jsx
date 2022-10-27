@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AiOutlineDownload } from 'react-icons/ai'
-import ReactDOM from "react-dom";
 import Pdf from "react-to-pdf";
 
 

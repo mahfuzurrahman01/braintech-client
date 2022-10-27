@@ -8,6 +8,7 @@ import Faq from "../Components/Faq/Faq";
 import Home from "../Components/Home/Home";
 import Login from "../Components/Login/Login";
 import Main from "../Components/Main/Main";
+import Profile from "../Components/Profile/Profile";
 import Register from "../Components/Register/Register";
 import Private from "../PrivateRoute/Private";
 
@@ -56,6 +57,10 @@ export const router = createBrowserRouter([
                 path:'/checkout/:id',
                 loader:({params}) => fetch(`https://braintech-server.vercel.app/checkout/${params.id}`),
                 element: <Private><CheckOut></CheckOut></Private>
+            },
+            {
+                path:'/profile',
+                element:<Private><Profile></Profile></Private>
             }
         ]
     }
