@@ -8,7 +8,7 @@ const LeftNav = () => {
     //state is use for stored the data came from fetch
     const [courses,setCourses] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/courses')
+        fetch('https://braintech-server.vercel.app/courses')
         .then(res => res.json())
         .then(data => setCourses(data))
     },[])
