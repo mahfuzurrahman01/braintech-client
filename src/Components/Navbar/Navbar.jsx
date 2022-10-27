@@ -190,7 +190,7 @@ const Navbar = () => {
                                             </li>
                                             <li>
                                                 {
-                                                    user?.uid ? <div><div className="tooltip  tooltip-top flex flex-col gap-y-3" data-tip={user.displayName ? user.displayName : 'user name'}>{user.photoURL === null ? <FaUser className='w-8 h-8 text-gray-400'></FaUser> : <img src={user.photoURL} alt='' className='w-8 h-8 rounded-full'></img>}</div><button className='text-gray-100 bg-blue-400 rounded py-1 px-2 w-1/4' onClick={signOutHandler}>Sign out</button></div> : <Link
+                                                    user?.uid ? <div><Link to='/profile'><div className="tooltip  tooltip-top flex flex-col gap-y-3" data-tip={user.displayName ? user.displayName : 'user name'}>{user.photoURL === null ? <FaUser className='w-8 h-8 text-gray-400'></FaUser> : <img src={user.photoURL} alt='' className='w-8 h-8 rounded-full'></img>}</div></Link><button className='text-gray-100 bg-blue-400 rounded py-1 px-2 w-1/4' onClick={signOutHandler}>Sign out</button></div> : <Link
                                                         to='/login'
                                                         className='font-medium tracking-wide text-gray-400 hover:text-gray-500 transition-colors duration-200 hover:text-deep-purple-accent-400'
                                                     >
