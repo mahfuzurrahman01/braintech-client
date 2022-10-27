@@ -1,10 +1,39 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2'
 import logo from '../../assets/logo/Lars_Peeters-removebg-preview.png'
 import { MdDarkMode, MdLightMode } from 'react-icons/md'
+import { useContext } from 'react';
+import { FaUser } from 'react-icons/fa'
+import { AuthContext } from '../../AuthContext/UserContext';
 const Navbar = () => {
+    //This state is for responsive menu open and close state define
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    //This state is for set the toggle mode 
     const [mode, setMode] = useState(false)
+    //calling the usecontext function and destructuring the data
+    const { user, logOut } = useContext(AuthContext)
+    //sign out handler use
+    const signOutHandler = () => {
+        logOut()
+            .then(() => {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+                Toast.fire({
+                    icon: 'warning',
+                    title: 'You are logged out!'
+                })
+            })
+    }
     return (
         <div className='sticky top-0 z-10'>
             <div className='px-4 mx-auto sm:max-w-xl md:max-w-full lg:w-11/12 lg:py-4 py-2 md:px-24 lg:px-8 bg-gray-100'>
@@ -19,7 +48,7 @@ const Navbar = () => {
 
                     </Link>
                     <ul className='flex hidden items-center space-x-8 lg:flex'>
-                      
+
                         <li>
                             <Link
                                 to='/Courses'
@@ -50,13 +79,16 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link
-                                to='/login'
-                                className='font-medium tracking-wide text-gray-400 hover:text-gray-500 transition-colors duration-200 hover:text-deep-purple-accent-400'
-                            >
-                                <button className='bg-blue-400 py-1 px-5 rounded hover:bg-blue-500 text-white'>Log in</button>
-                            </Link>
+                            {
+                                user?.uid ? <div className='flex gap-1'><div title={user.displayName}>{user.photoURL === null ? <FaUser className='w-8 h-8 text-gray-400'></FaUser> : <img src={user.photoURL} alt='' className='w-8 h-8 rounded-full'></img>}</div><button className='text-gray-100 bg-blue-400 rounded py-1 px-2' onClick={signOutHandler}>Sign out</button></div> : <Link
+                                    to='/login'
+                                    className='font-medium tracking-wide text-gray-400 hover:text-gray-500 transition-colors duration-200 hover:text-deep-purple-accent-400'
+                                >
+                                    <button className='bg-blue-400 py-1 px-5 rounded hover:bg-blue-500 text-white'>Log in</button>
+                                </Link>
+                            }
                         </li>
+
                         <li onClick={() => setMode(!mode)} >
                             {
                                 mode ? <MdDarkMode className='w-6 h-6 text-blue-400'></MdDarkMode> : <MdLightMode className='w-6 h-6 text-blue-400'></MdLightMode>
@@ -127,7 +159,7 @@ const Navbar = () => {
                                     </div>
                                     <nav>
                                         <ul className='space-y-4'>
-                                            
+
                                             <li>
                                                 <Link
                                                     to='/courses'
@@ -156,12 +188,14 @@ const Navbar = () => {
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link
-                                                    to='/login'
-                                                    className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
-                                                >
-                                                    <button className='bg-blue-400 py-1 text-white px-5 rounded hover:bg-blue-500'>Log in</button>
-                                                </Link>
+                                                {
+                                                    user?.uid ? <div className='flex flex-col gap-y-3'><div title={user.displayName}>{user.photoURL === null ? <FaUser className='w-8 h-8 text-gray-400'></FaUser> : <img src={user.photoURL} alt='' className='w-8 h-8 rounded-full'></img>}</div><button className='text-gray-100 bg-blue-400 rounded py-1 px-2 w-1/4' onClick={signOutHandler}>Sign out</button></div> : <Link
+                                                        to='/login'
+                                                        className='font-medium tracking-wide text-gray-400 hover:text-gray-500 transition-colors duration-200 hover:text-deep-purple-accent-400'
+                                                    >
+                                                        <button className='bg-blue-400 py-1 px-5 rounded hover:bg-blue-500 text-white'>Log in</button>
+                                                    </Link>
+                                                }
                                             </li>
                                             <li onClick={() => setMode(!mode)} >
                                                 {

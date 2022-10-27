@@ -1,15 +1,33 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
 
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../AuthContext/UserContext';
+import { errorToast, successToast } from '../Shared/Toast';
 
 const Login = () => {
-    const loginHandler = event =>{
+    const { loginwithEmailPass } = useContext(AuthContext)
+    const loginHandler = event => {
         event.preventDefault()
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email,password)
+        loginwithEmailPass(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+                //set success toast
+                successToast()
+                form.reset()
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                //toast
+                errorToast(errorMessage)
+            })
     }
+    //log in with google 
+    
     return (
         <div className='md:w-1/4 w-11/12 mx-auto my-10 '>
             <label htmlFor="Toggle1" className="inline-flex items-center space-x-4 cursor-pointer text-gray-100">
